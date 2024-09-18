@@ -1,0 +1,36 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2>Log in</h2>
+    <!-- email and validating email-->
+<span class="p-float-label">
+ <input type="text" style="display:grid"formControlName="email" pInputText> 
+ <label>* Email</label>
+</span>
+    <div class="error-container">
+        <div *ngIf="(submitted && email?.invalid) || (email?.touched && email?.invalid)" class="error-message">
+            <small *ngIf="email?.errors?.['email']">
+                Sorry, you must enter a valid email address!
+            </small>
+            <small *ngIf="email?.errors?.['required']">
+                Sorry, you must enter an email address!
+            </small>
+        </div>
+    </div>
+    <!-- password and validating password-->
+
+    <span class="p-float-label">
+        <input type="text" style="display:grid"formControlName="password" pInputText> 
+        <label>* Password</label>
+       </span>   
+    <div class="error-container">
+        <div *ngIf="(submitted && password?.invalid) || (password?.touched && password?.invalid)" class="error-message">
+            <small *ngIf="password?.errors?.['required']">
+                Sorry, you must enter a password!
+            </small>
+            <small *ngIf="password?.errors?.['minlength']">
+                Password must be at least 8 characters long!
+            </small>
+        </div>
+    </div>
+
+    <input type="submit" value="Log in">
+</form>

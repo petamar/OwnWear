@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="product-detail.component.css">
+</head>
+<body>
+<div class="product-container" *ngIf="product">
+    <div class="product-image">
+        <p-image
+            [src]="selectedColorImage"
+            alt="{{ product.name }}"
+            width="300"
+            [preview]="true">
+        </p-image>
+    </div>
+
+    <div class="product-details">
+        <h2>{{ product.name }}</h2>
+        <p><strong>Brand:</strong> {{ product.brand }}</p>
+        <p class="price"><strong>Price: </strong> <span class="price-value">€{{ product.price }}</span></p>
+        <div class="color-variants">
+            <strong>Color Variants:</strong>
+            <div class="color-name">{{ selectedColor.color_name }}</div>
+            <div class="color-buttons">
+                <button *ngFor="let color of product.colors"
+                        [ngStyle]="{'background-color': color.color_hex}"
+                        (click)="selectColor(color)"
+                        class="color-button">
+                </button>
+            </div>
+        </div>
+        <div class="size">
+            <label for="sizes"><strong>Size:</strong></label>
+            <select id="sizes" [(ngModel)]="selectedSize">
+                <option *ngFor="let size of product.sizes">{{ size }}</option>
+            </select>
+        </div>
+        <div class="details">
+            <p><strong>Details:</strong></p>
+            This  {{ product.name }} is a very nice and useful product. The price is 10% cheaper then in other shops.
+            Buy now and you have shipping for free.
+        </div>
+    </div>
+    <p-button
+        icon="pi pi-cart-plus"
+        class="flex-auto md:flex-initial white-space-nowrap"
+        label="Add"
+        (click)="addToCart(product)"
+    />
+</div>
+<div *ngIf="!product" class="loading">
+</div>
+
+<div class="cart-message" *ngIf="cartMessageVisible">Item has been added to the cart</div>

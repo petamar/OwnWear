@@ -1,0 +1,206 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.product-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 40px;
+    background-color: #ffffff;
+    margin: 20px auto;
+    max-width: 1200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    transition: box-shadow 0.3s ease;
+}
+
+.product-container:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+    flex: 1;
+    max-width: 450px;
+    margin-right: 50px;
+    width: 400;
+}
+
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    width: 400;
+}
+
+.product-image img:hover {
+    transform: scale(1.05);
+}
+
+.product-details {
+    flex: 2;
+    padding: 20px;
+}
+
+.product-details h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 10px;
+}
+
+.product-details p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.product-details .price {
+    font-size: 1.4em;
+    margin: 20px 0;
+}
+
+.product-details .price-value {
+    font-size: 1.3em;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.color-variants {
+    margin: 20px 0;
+}
+
+.color-variants strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #2c3e50;
+}
+
+.color-name {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+}
+
+.color-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.color-button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    transition: border 0.3s ease, transform 0.3s ease;
+}
+
+.color-button:hover {
+    border: 2px solid #2c3e50;
+    transform: scale(1.1);
+}
+
+.size {
+    margin: 20px 0;
+}
+
+.size label {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+.size select {
+    padding: 10px;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.details {
+    margin-top: 20px;
+}
+
+.details p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #7f8c8d;
+}
+
+.loading {
+    text-align: center;
+    font-size: 1.5em;
+    padding: 20px;
+    color: #7f8c8d;
+}
+
+/*Following three adjustments are for the pop up message when an item is added to the cart*/
+.cart-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 9999;
+    animation: slideIn 0.5s ease-in-out, fadeOut 0.5s 1.5s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 920px) {
+    .product-container {
+        flex-direction: column; 
+        align-items: center; 
+        padding: 20px;
+    }
+
+    .product-image {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .product-details {
+        text-align: left;
+        max-width: 100%; 
+    }
+
+    .p-button {
+        margin-top: 10px; 
+        align-self: flex-end; 
+    }
+}
+
+@media (max-width: 376px) {
+
+   
+}

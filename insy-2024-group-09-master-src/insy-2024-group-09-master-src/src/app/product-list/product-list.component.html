@@ -1,0 +1,176 @@
+<div class="search-container">
+    <div class="search-bar">
+        <p-inputGroup>
+            <input
+                type="text"
+                pInputText
+                placeholder="Search"
+                [(ngModel)]="searchBar"
+                (keyup.enter)="onFilter()"
+            />
+            <button
+                type="button"
+                pButton
+                icon="pi pi-search"
+                label=""
+                (click)="onFilter()"
+            ></button>
+        </p-inputGroup>
+    </div>
+</div>
+
+<p-sidebar [(visible)]="sidebarVisible">
+    <h2 class="sidebar-title">Filters</h2>
+
+    <div class="filter-section">
+        <label for="brand" class="filter-label">Brand</label>
+        <hr class="filter-line">
+        <div *ngFor="let brand of brands">
+            <p-checkbox
+                [(ngModel)]="brandsFiltered"
+                [label]="brand"
+                [value]="brand"
+                (onChange)="onFilter()"
+            ></p-checkbox>
+        </div>
+    </div>
+    <br>
+
+    <div class="filter-section">
+        <label for="color" class="filter-label">Color</label>
+        <hr class="filter-line">
+        <div *ngFor="let color of colors" class="filter-item">
+            <p-checkbox
+                [(ngModel)]="colorsFiltered"
+                [label]="'  '"
+                [value]="color"
+                (onChange)="onFilter()"
+            ></p-checkbox>
+            <div [style.width.px]="20" [style.height.px]="20" [style.background-color]="color" class="color-circle"></div>
+            <span>{{ color }}</span>
+        </div>
+    </div>
+    <br>
+
+    <div class="filter-section">
+        <label for="size" class="filter-label">Size</label>
+        <hr class="filter-line">
+        <div *ngFor="let size of sizes">
+            <p-checkbox
+                [(ngModel)]="sizesFiltered"
+                [label]="size"
+                [value]="size"
+                (onChange)="onFilter()"
+            ></p-checkbox>
+        </div>
+    </div>
+    <br>
+</p-sidebar>
+
+<p-dataView severity="success" #dv [value]="products" [emptyMessage]="'No products available for your search or applied filters.'">
+    <ng-template pTemplate="header">
+        <div class="header-bar">
+            <div class="filter-btn">
+                <p-button (click)="sidebarVisible = true" icon="pi pi-filter" severity="success"></p-button>
+            </div>
+            <div class="layout-options">
+                <p-dataViewLayoutOptions ></p-dataViewLayoutOptions>
+            </div>
+        </div>
+    </ng-template>
+    <br>
+
+    <ng-template pTemplate="list" let-products>
+        <div class="grid-nogutter" (scroll)="onScroll($event)">
+            <div class="col-12" *ngFor="let product of products">
+                <div class="product-card">
+                    <div class="image-container">
+                        <a [routerLink]="['product', product.id]">
+                            <img src="./assets/products/images/{{product.id}}.jpg" class="img-small"/>
+                        </a>
+                    </div>
+                    <div class="details-container">
+                        <div class="info">
+                            <br>
+                            <span class="brand">{{ product.brand }}</span>
+                            <div class="name">{{ product.name }}</div>
+                            <br>
+                            <span class="rating-text">{{ product.rating }}</span>
+                            <i class="pi pi-star-fill rating-star"></i>
+                        </div>
+                        <div class="actions">
+                            <span class="price">{{ '€' + product.price }}</span>
+                            <div class="buttons">
+                                <p-button severity="danger" icon="pi pi-heart-fill" [outlined]="true"></p-button>
+                                <p-button
+                                    icon="pi pi-cart-plus"
+                                    class="btn-add"
+                                    label="Add to cart"
+                                    [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
+                                    (click)="addToCart(product, product.sizes[0], getRandomColorName(product.id) )"
+                                    severity="success"
+                                ></p-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="grid" let-products>
+        <div class="grid-nogutter" (scroll)="onScroll($event)">
+            <div class="grid-item" *ngFor="let product of products">
+                <div class="product-card-grid">
+                    <div class="image-container">
+                        <a [routerLink]="['product', product.id]">
+                            <img src="./assets/products/images/{{product.id}}.jpg" class="img-small"/>
+                        </a>
+                    </div>
+                    <div class="details-container-grid">
+                        <div class="info-grid">
+                                <span class="brand">{{ product.brand }}</span>
+                                <div class="name">{{ product.name }}</div>
+                            <div class="rating-container">
+                                <div class="rating">
+                                    <span class="rating-text">{{ product.rating }}</span>
+                                    <i class="pi pi-star-fill rating-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="actions">
+                            <span class="price">{{ '€' + product.price }}</span>
+                            <div class="buttons">
+                                <p-button severity="danger" icon="pi pi-heart-fill" [outlined]="true"></p-button>
+                                <p-button
+                                    icon="pi pi-shopping-cart"
+                                    class="btn-buy"
+                                    label="Buy Now"
+                                    [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
+                                    (click)="addToCart(product, product.sizes[0], getRandomColorName(product.id) )"
+                                    severity="success"
+                                ></p-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    
+    
+</p-dataView>
+
+<div class="spinner-container" *ngIf="loading">
+    <p-progressSpinner
+        class="spinner"
+        strokeWidth="5"
+        fill="var(--surface-ground)"
+        animationDuration="1.5s"
+    ></p-progressSpinner>
+</div>
+
+<div class="no-products-msg" *ngIf="noMoreProducts">No more products available</div>
+
+<div class="cart-msg" *ngIf="cartMessageVisible">Item has been added to the cart</div>

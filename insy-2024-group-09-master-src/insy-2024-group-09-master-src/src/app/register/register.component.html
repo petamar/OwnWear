@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    Fields marked as * are required <br><br>
+    <h2>Name</h2>
+    <div class="form-group">
+
+        <label>
+            <input type="radio" name="gender" value="male"> Male
+        </label>
+        <label>
+            <input type="radio" name="gender" value="female"> Female
+        </label>
+        <label>
+            <div class="gender-other-container">
+                <input type="radio" name="gender" value="other">
+                <input type="text" id="otherText" name="diverseText" placeholder="Other" pInputText>
+            </div>
+        </label>
+
+    </div>
+    <br>
+    <table>
+        <tr>
+            <td style="vertical-align: top;">
+                <div class="size-of-box">
+                    <label for="first-name" style="margin-top: 10px;">* First name</label>
+                    <input type="text" id="first-name" #firstNameInput name="first-name" placeholder="" pInputText>
+                    <div class="error-message-container">
+                        <small *ngIf="submitted && !firstNameInput.value.trim()" class="error-message"
+                               style="display: block; margin-top: 5px;">First Name is required.</small>
+                    </div>
+                </div>
+                <div style="height: 120px;" class = "lastName">
+                    <label for="last-name">* Last name</label>
+                    <div style="margin-top: 0px;">
+                        <input type="text" id="last-name" #lastNameInput name="last-name" placeholder="" pInputText>
+                    </div>
+                    <div class="error-message-container">
+                        <small *ngIf="submitted && !lastNameInput.value.trim()" class="error-message"
+                               style="display: block; margin-top: 5px;">Last Name is required.</small>
+                    </div>
+                </div>
+            </td>
+            <td style="vertical-align: top;">
+                <div style="margin-top: 0px; height: 120px;">
+                    <label for="email" style="margin-top: 20px;">* Email</label>
+                    <input type="email" id="email" name="email" placeholder="example@mail.com" formControlName="email"
+                           pInputText>
+                    <div class="hint-message-container">
+                        <div class="hint-message">
+                            <small>You need your email to log in.</small>
+                        </div>
+                    </div>
+                    <div class="error-message-container">
+                        <div *ngIf="email?.touched && email?.invalid" class="error-message">
+                            <small *ngIf="email?.errors?.['email']">
+                                You must enter a valid email address.
+                            </small>
+                        </div>
+                        <small *ngIf="submitted && email?.errors?.['required']" class="error-message"
+                               style="display: block; margin-top: 5px;">
+                            Email address is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="password" style="margin-top: 40px; height: 100px;">
+                    <label for="password" style="margin-top: 10px;">* Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••"
+                           formControlName="password" pInputText>
+                    <div class="hint-message-container">
+                        <div class="hint-message">
+                            <small>Password must be at least 8 characters long.</small>
+                        </div>
+                    </div>
+                    <div class="error-message-container">
+                        <div *ngIf="password?.touched && password?.invalid" class="error-message">
+                            <small *ngIf="password?.errors?.['minlength']">
+                                Please enter valid password.
+                            </small>
+                        </div>
+                        <small *ngIf="submitted && password?.errors?.['required']" class="error-message"
+                               style="display: block; margin-top: 5px;">
+                            Password is required.
+                        </small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="birthDate">
+        <h2>Birthdate</h2>
+        <label for="dateOfBirth"></label>
+        <p-calendar id="dateOfBirth" formControlName="dateOfBirth" [showIcon]="true"
+                    placeholder="mm/dd/yyyy"></p-calendar>
+
+        <div class="error-message-container">
+            <div *ngIf="submitted && dateOfBirth?.errors?.['required']" class="error-message">
+                <small>A valid date of birth is required.</small>
+            </div>
+        </div>
+    </div>
+
+    <h2>Address</h2>
+
+    <table>
+        <tr>
+            <td>
+                <label for="street">* Street name</label>
+                <input type="text" id="street" formControlName="street" placeholder="" pInputText>
+                <div class="error-message-container">
+                    <div *ngIf="submitted && street?.invalid" class="error-message">
+                        <small *ngIf="street?.errors?.['required']">
+                            Street is required.
+                        </small>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <label  for="streetNumber">* Street number</label>
+                <input type="text" id="streetNumber" formControlName="streetNumber" placeholder="" pInputText>
+                <div class="error-message-container">
+                    <div *ngIf="submitted && streetNumber?.invalid" class="error-message">
+                        <small *ngIf="streetNumber?.errors?.['required']">
+                            Street number is required.
+                        </small>
+                        <small *ngIf="streetNumber?.errors?.['pattern']">
+                            You can enter only a number.
+                        </small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="margin-top: 15px;">
+                    <label for="postalCode">* Postal code</label>
+                    <input type="text" id="postalCode" formControlName="postalCode" placeholder="" pInputText>
+                    <div class="error-message-container">
+                        <div class="error-message" *ngIf="submitted && postalCode?.invalid">
+                            <small *ngIf="postalCode?.errors?.['required']">
+                                Postal code is required.
+                            </small>
+                            <small *ngIf="postalCode?.errors?.['pattern']">
+                                You can enter only a number.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div style="margin-top: 15px;">
+                    <label for="city">* City</label>
+                    <input type="text" id="city" formControlName="city" placeholder="" pInputText>
+                    <div class="error-message-container">
+                        <div class="error-message" *ngIf="submitted && city?.invalid">
+                            <small>
+                                City is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <label>* Country </label><br>
+    <div class="dropdown">
+        <label for="country"></label><br>
+        <select name="country" id="country" formControlName="country" style="font-size: 16px;" class="country-input"
+                pInputText>
+            <option value="" hidden disabled selected>Select</option>
+            <option value="austria">Austria</option>
+            <option value="belgium">Belgium</option>
+            <option value="france">France</option>
+            <option value="germany">Germany</option>
+            <option value="ireland">Ireland</option>
+            <option value="italy">Italy</option>
+            <option value="luxembourg">Luxembourg</option>
+            <option value="portugal">Portugal</option>
+            <option value="romania">Romania</option>
+            <option value="russia">Russia</option>
+            <option value="slovakia">Slovakia</option>
+            <option value="spain">Spain</option>
+        </select><br>
+        <div class="error-message-container">
+
+            <div *ngIf="(submitted && !country?.value) || (submitted && country?.invalid && country?.touched)"
+                 class="error-message">
+                <small>Please select a country.</small>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    Your address will be used as the default shipping address.
+    <br><br>
+
+    <input type="submit" value="Submit">
+
+    <br>
+    <br>
+    <br>
+</form>
+</body>
+</html>

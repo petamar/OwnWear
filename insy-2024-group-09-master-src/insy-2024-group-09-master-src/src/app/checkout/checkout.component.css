@@ -1,0 +1,297 @@
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-right: 10px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.radio-item input[type="radio"] {
+    margin: 2px;
+}
+
+.buttons-right p-button {
+    margin-right: 10px; /* Adjust the spacing as needed */
+  }
+
+  .buttons-right a:last-child p-button {
+    margin-right: 0; /* Remove the margin from the last button */
+  }
+
+.radio-item label {
+    margin: 0;
+}
+
+.error-message {
+    color: red;
+    margin-left: 1rem;
+}
+
+.stepper-panel-content {
+    height: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stepper-panel-content-2 {
+    height: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.p-step-content {
+    height: 100%;
+}
+
+.p-steps .p-steps-header {
+    pointer-events: none !important;
+}
+
+.flex-auto {
+    flex: 1 1 auto;
+}
+
+.h-full {
+    height: 100%;
+}
+
+
+/* Style for the address form */
+.address-form {
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.address-form label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.address-form input[type="text"], .address-form .country-input {
+    width: 250px;
+    height: 40px;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 10px 10px;
+}
+
+/* Style for error message */
+.error-message {
+    color: red;
+    z-index: 1;
+    padding: 5px;
+}
+
+.address-form-rows {
+    display: flex;
+    gap: 10px;
+}
+
+.address-form label {
+    flex: 1;
+}
+
+.delivery-payment-container {
+    display: flex;
+    gap: 50px;
+    justify-content: flex-start;
+
+}
+
+.delivery-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    width: 450px;
+    margin-left: 30px;
+    height: 250px;
+}
+
+.payment-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    width: 450px;
+    margin-left: 30px;
+    height: 250px;
+
+}
+
+.pi-truck {
+    font-size: 20px;
+}
+
+.pi-wallet {
+    font-size: 20px;
+}
+
+.address-conatiner {
+    background-color: #f0f0f0;
+
+}
+
+.summary-info-container {
+    background-color: #f0f0f0;
+    padding: 40px;
+    width: calc(100% + 80px);
+    margin-left: 40px;
+}
+
+.pay-info-container {
+    background-color: #f0f0f0;
+    padding: 40px;
+    width: calc(100% + 80px);
+    margin-left: 40px;
+    padding-right: 10px;
+}
+
+.summary-container {
+    display: flex;
+    padding-right: 10px;
+
+}
+
+.buttons-right {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.last-error-message{
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
+
+.button-container-error {
+    display: flex;
+    gap: 20px;
+  }
+
+  .country-label {
+    margin-right: 10px;
+  }
+
+/*Interactive styling for the checkout*/
+@media (max-width: 830px ) {
+    .radio-item input[type="radio"] {
+        transform: scale(1.7);
+        margin: 2px;
+    }
+
+    .delivery-payment-container, .summary-container, .address-container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+        padding-right: 10px;
+    }
+
+    /*Delivery and Payment stepper*/
+    .stepper-panel-content-2 {
+        height: auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /*Address stepper*/
+    .stepper-panel-content {
+        height: 600px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .address-form .form-row {
+        flex-direction: column;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding-right: 10px;
+    }
+}
+
+@media (max-width: 450px) {
+     .summary-container, .address-container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+
+    }
+    .delivery-payment-container {
+        display: flex;
+        gap: 30px;
+        justify-content: flex-start;
+
+    }
+
+    .delivery-container {
+        background-color: #f0f0f0;
+        padding: 10px;
+        width: 450px;
+        margin-left: 30px;
+        height: 300px;
+    }
+
+    .payment-container {
+        background-color: #f0f0f0;
+        padding: 10px;
+        width: 450px;
+        margin-left: 30px;
+        height: 250px;
+
+    }
+
+    /*Address stepper*/
+    .stepper-panel-content {
+        height: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .address-form .form-row {
+        flex-direction: column;
+    }
+
+    .address-form input[type="text"], .address-form .country-input {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .delivery-container, .payment-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .summary-info-container, .pay-info-container {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+

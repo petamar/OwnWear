@@ -1,0 +1,107 @@
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    height: 10ex;
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+}
+
+/* Set a max width on wide screens */
+@media (min-width: 72rem) {
+    .menu {
+        width: var(--max-width);
+    }
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+    color: none;
+}
+
+#title {
+    font-size: 1.4rem;
+    color: black;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+#logo-img {
+    width: 7ex;
+}
+
+.menu-entries {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 30px;
+    padding-left: 30px;
+
+}
+
+/* Adapt PrimeNG styles */
+:host ::ng-deep .menu-entries .p-button-label {
+    font-weight: normal;
+}
+
+.badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    z-index: 1;
+}
+
+:host ::ng-deep .buttons .p-badge {
+    background-color: #31b107 !important;
+}
+
+.buttons {
+    border-color: black !important;
+    color: rgb(0, 0, 0) !important;
+}
+
+:host ::ng-deep .black-button .p-button {
+    color: black !important;
+
+}
+
+@media (max-width: 850px) {
+    .menu {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .menu-entries {
+        display: flex;
+        align-items: center;
+        gap: 5px; 
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    #title, :host ::ng-deep .p-button-label {
+        display: none; /* Hide the title and button labels on smaller screens */
+    }
+
+    .menu {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .menu-entries {
+        gap: 5px;
+        padding-right: 30px;
+
+    }
+}
+
+

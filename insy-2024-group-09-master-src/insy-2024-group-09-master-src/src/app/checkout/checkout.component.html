@@ -1,0 +1,188 @@
+<p-stepper orientation="vertical" [linear]="true">
+  <p-stepperPanel header="Address">
+      <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+          <div class="stepper-panel-content">
+              <div class="flex flex-column h-full">
+                  <div class="">
+                      <!-- Move the form here -->
+                      <form [formGroup]="addressForm" class="address-form">
+                        <div class="address-container">
+                          <div class="form-row">
+                              <label>
+                                  First Name:
+                                  <input type="text" formControlName="firstName">
+                              </label>
+                              <label>
+                                  Last Name:
+                                  <input type="text" formControlName="lastName">
+                              </label>
+                          </div>
+                          <div class="form-row">
+                              <label>
+                                  Street Name:
+                                  <input type="text" formControlName="streetName">
+                              </label>
+                              <label>
+                                  Street Number:
+                                  <input type="text" formControlName="streetNumber">
+                              </label>
+                          </div>
+                          <div class="form-row">
+                              <label>
+                                  Postal Code:
+                                  <input type="text" formControlName="postalCode">
+                              </label>
+                              <label>
+                                  City:
+                                  <input type="text" formControlName="city">
+                              </label>
+                          </div>
+                          <div class="form-row">
+                              <div style="display: flex; align-items: center;">
+                                  <label class="country-label">Country: </label>
+                                  <select name=" country" id="country" formControlName="country"  style="font-size: 16px; border: 1.7px solid black;" class="country-input" pInputText>
+                                <option value="Germany" hidden disabled selected>Germany</option>
+                                <option value="austria">Austria</option>
+                                <option value="belgium">Belgium</option>
+                                <option value="france">France</option>
+                                <option value="germany">Germany</option>
+                                <option value="ireland">Ireland</option>
+                                <option value="italy">Italy</option>
+                                <option value="luxembourg">Luxembourg</option>
+                                <option value="portugal">Portugal</option>
+                                <option value="romania">Romania</option>
+                                <option value="russia">Russia</option>
+                                <option value="slovakia">Slovakia</option>
+                                <option value="spain">Spain</option>
+                              </select><br>
+                          </div>
+                        </div>
+                        </div>
+                      </form>
+                  </div>
+              </div>
+
+              <div class="flex py-4 gap-2 align-items-center">
+                  <p-button label="Next" (onClick)="handleNextClick(nextCallback)" />
+                  <div *ngIf="showErrorMessage" class="error-message">
+                      <p>Please fill out all the fields in order to click Next.</p>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </p-stepperPanel>
+
+  <p-stepperPanel header="Delivery & Payment">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
+          <div class="stepper-panel-content-2">
+            <div class="delivery-payment-container">
+            <div class="form-group">
+            <div class="delivery-container">
+                    <div>
+                      <div class="title-for-delivery">
+                      <span><i class="pi pi-truck"></i> <b><p style="display: inline; font-size: 18px;"> Delivery:</p></b></span>
+                    </div>
+                      <p><small>Please choose one delivery option.</small></p>
+                    </div>
+                      <div class="radio-item">
+                          <input type="radio" id="dhl" name="delivery" [(ngModel)]="selectedDelivery" value="DHL">
+                          <label for="dhl"><b>DHL </b>- 4.99€</label>  <p style="font-size: 12px;" >-expected delivery time: 4-5 days</p>
+
+                      </div>
+                      <div class="radio-item">
+                          <input type="radio" id="germanPost" name="delivery" [(ngModel)]="selectedDelivery" value="German Post">
+                          <label for="germanPost"><b>German Post</b> - 11.99€</label> <p style="font-size: 12px;" >-expected delivery time: 1-2 hours</p>
+                      </div>
+                      <div class="radio-item">
+                          <input type="radio" id="ups" name="delivery" [(ngModel)]="selectedDelivery" value="UPS">
+                          <label for="ups"><b>UPS </b>- 2.99€</label> <p style="font-size: 12px;" >-expected delivery time: 7-8 days</p>
+                      </div>
+                  </div>
+                </div>
+                  <div class="form-group">
+                    <div class="payment-container">
+                    <div>
+                        <span><i class="pi pi-wallet"></i><b><p style="display: inline; font-size: 18px;"> Payment option:</p></b></span>
+                        <p><small>Please choose one payment option.</small></p>
+                    </div>
+                    <div style="line-height: 2.35;">
+                        <div class="radio-item">
+                          <input type="radio" id="Direct debit" name="payment" [(ngModel)]="selectedPayment" value="Direct Debit">
+                          <i class="pi pi-credit-card"> </i>
+                          <label for="card">Card</label> <p></p>
+                      </div>
+                      <div class="radio-item">
+                          <input type="radio" id="GooglePay" name="payment" [(ngModel)]="selectedPayment" value="Google Pay">
+                          <i class="pi pi-google"> </i>
+                          <label for="googlePay">Google Pay</label> <p></p>
+                      </div>
+                      <div class="radio-item">
+                          <input type="radio" id="Paypal" name="payment" [(ngModel)]="selectedPayment" value="Paypal">
+                          <i class="pi pi-paypal"> </i>
+                          <label for="paypal">Paypal</label> <p></p>
+                      </div>
+                    </div>
+                </div>
+                  </div>
+                  </div>
+              </div>
+
+              <div class="last-error-message">
+                <div class="button-container-error">
+                  <p-button label="Back" severity="secondary" (onClick)="prevCallback.emit()"></p-button>
+                  <p-button label="Next" (onClick)="validateAndProceed(nextCallback)"></p-button>
+                </div>
+                <div *ngIf="errorMessage" class="error-message">
+                  <p>Please choose one delivery option and one payment option.</p>
+                </div>
+              </div>
+              
+      </ng-template>
+  </p-stepperPanel>
+
+  <p-stepperPanel header="Summary">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+          <div class="stepper-panel-content">
+              <div class="summary-container">
+                  <div class="summary-info-container">
+                  <b><p style="display: inline; font-size: 20px;"> Delivery information:</p></b>
+                  <p><b>Delivery Address:</b> {{ addressForm.value.firstName }} {{ addressForm.value.lastName }}, {{ addressForm.value.streetName }} {{ addressForm.value.streetNumber }}, {{ addressForm.value.postalCode }}, {{ addressForm.value.city }}, {{ addressForm.value.country }}</p>
+                  <p><b>Delivery Method: </b>{{ selectedDelivery }} </p>
+                  <p>Expected date of arrival: <b> {{ getDeliveryDate() }} </b></p>
+                </div>
+                <div class="pay-info-container">
+                  <b><p style="display: inline; font-size: 20px;"> Payment information:</p></b>
+                  <p><b>Payment Method: </b> {{ selectedPayment }}</p>
+                  <p><b>Price of products: </b> €{{ total}}</p>
+                  <p><b>Price of delivery: </b> €{{ getDeliveryPrice() }}</p>
+                  <span><b><p style="display: inline;  font-size: 21px;">Total Price to Pay:   </p><p style=" display: inline; font-size: 23px; color: #c80a0a; margin-left: 5px;"> €{{ (total + getDeliveryPrice()).toFixed(2) }}</p></b></span>
+                </div>
+                  <div>
+                  </div>
+
+
+                </div>
+              <div class="flex py-4 buttons-right">
+              <p-button label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+              <a routerLink="/success">
+                  <p-button severity="success" label="Buy and Pay" />
+              </a>
+              </div>
+          </div>
+      </ng-template>
+  </p-stepperPanel>
+</p-stepper>
+
+<style>
+  .address-form .form-row {
+      display: flex;
+      gap: 10px;
+  }
+  .address-form label {
+      flex: 1;
+  }
+  .error-message {
+      color: red;
+      margin-left: 10px;
+  }
+</style>

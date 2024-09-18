@@ -1,0 +1,23 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure the menu bar is above other content */
+  }
+
+  .content-container {
+    display: flex;
+    margin-top: 20px;
+  }
+
+
+  .whole-app {
+    margin-top:80px; /*has to be 80 otherwise display options are not visible*/
+    padding: 20px;
+    flex-grow: 1;
+    left: 0;
+    right: 0;
+    box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+    
+  }

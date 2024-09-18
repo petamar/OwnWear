@@ -1,0 +1,18 @@
+<nav>
+    <div class="menu">
+        <a href="/" id="logo">
+            <img id="logo-img" src="../../assets/frog_nobackground.png" />
+            <span id="title">
+                <h2 style="font-size: 30px; color: #555;">Frogwear</h2>
+            </span>
+        </a>
+        <div class="menu-entries">
+            <p-button [routerLink]="['login']" [text]="true" icon="pi pi-sign-in" label="Log in" class="buttons black-button"></p-button>
+            <p-button [routerLink]="['register']" [text]="true" icon="pi pi-user-plus" label="Register" class="buttons black-button"></p-button>
+            <div style="position: relative; display: inline-block;">
+                <p-button [routerLink]="['cart']" [text]="true" icon="pi pi-shopping-cart" label="Cart" class="buttons black-button"></p-button>
+                <p-badge *ngIf="totalCartItems > 0" [value]="totalCartItems" class="buttons badge"></p-badge>
+            </div>
+        </div>
+    </div>
+</nav>

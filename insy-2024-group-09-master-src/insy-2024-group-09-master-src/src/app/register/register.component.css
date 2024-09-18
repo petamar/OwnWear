@@ -1,0 +1,219 @@
+/*Displays the Field as a h-stack*/
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.error-message-container {
+    height: 15px;
+    z-index: 1; /* Ensure that the error message is displayed above other content */
+}
+
+.error-message {
+    color: red;
+    z-index: 1; /* Ensure that the error message is displayed above other content */
+}
+
+.calendar-input {
+    width: 250px;
+    height: 40px;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px; /* Rounded corners */
+    margin-left: -8px; /* Aligns the field with the rest */
+
+}
+
+.country-input {
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px;
+}
+
+/* Custom background color for calendar button */
+:host ::ng-deep .p-datepicker-trigger {
+    background-color: grey !important;
+    border-color: grey !important;
+}
+
+td {
+    padding-right: 20px; /* Add space between each td element */
+}
+
+/* Style submit button */
+input[type="submit"] {
+    background-color: green;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+
+/* Style for the form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding-left: 300px;
+    padding-right: 300px;
+}
+
+input[type="submit"]:hover {
+    background-color: darkgreen;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"],
+form select {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: -10px;
+}
+
+.dropdown {
+    width: 200px;
+    margin-left: 4px;
+    margin-top: -40px;
+    display: block;
+}
+
+.error-message {
+    color: red;
+}
+
+.gender-other-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.gender-other-container input[type="radio"] {
+    margin-right: 20px;
+}
+
+.dropdown {
+    margin-top: -40px;
+}
+
+.birthDate {
+    margin-top: -40px;
+}
+
+.size-of-box{
+    height: 160px;
+}
+
+
+
+/*Interactive styling for the form*/
+
+@media (max-width: 950px) {
+    .form-group input[type="radio"] {
+        transform: scale(1.7);
+        margin: 10px;
+    }
+
+    .size-of-box{
+        height: 120px;
+    }
+
+    .form-group {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .calendar-input, .country-input, form input[type="text"], form input[type="email"], form input[type="password"], form input[type="number"], form select {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    form {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .dropdown {
+        width: 100%;
+        margin-top: -40px;
+    }
+
+    .birthDate {
+        margin-top: -40px;
+    }
+
+    .gender-other-container {
+        width: 200px;
+    }
+
+    .dropdown{
+        width: 200px;
+    }
+
+    .lastName{
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 376px) {
+    .form-group input[type="radio"] {
+        transform: scale(1.7);
+        margin: 10px;
+    }
+
+    table {
+        display: block;
+        width: 100%;
+    }
+
+    td {
+        display: block;
+        width: 100%;
+        padding-right: 0;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+
+    }
+
+    .dropdown,
+    .calendar-input,
+    .country-input {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .dropdown {
+        margin-top: -40px;
+    }
+
+    .birthDate {
+        margin-top: -40px;
+    }
+
+    .gender-other-container {
+        width: 117px;
+    }
+
+    .password {
+        margin-top: 50px;
+    }
+
+    .lastName{
+        margin-top: 0px;
+    }
+}
+
+
+
+

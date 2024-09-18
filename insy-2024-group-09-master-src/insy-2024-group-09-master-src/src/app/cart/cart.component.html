@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="cart.component.css">
+</head>
+<body>
+<div class="cart-container">
+    <h1>Shopping Cart</h1>
+    <div class="cart-content">
+        <div class="cart-items">
+          <div *ngIf="cartItems.length === 0">Your cart is empty.</div>
+          <div class="item-details">
+            <div *ngFor="let item of cartItems" class="cart-item card">
+              <div class="product-image">
+                <a routerLink="/product/{{ item.id }}">
+                  <img src="../assets/products/images/{{item.color}}.jpg" width="200">
+                  </a>
+              </div>
+              <div class="item-info">
+                <a routerLink="/product/{{ item.id }}">
+                  <p class="product-name" style="font-size: 50;">{{ getProductName(item.id) }}</p>
+                </a>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <p><strong>Size:</strong> {{ item.size }}</p>
+                  <p><strong>Price:</strong> €{{ getProductPrice(item.id) }}</p>
+                  <br>
+                  <br>
+                  <div class="quantity-remove">
+                      <label for="quantity-{{item.id}}"><strong>Quantity:</strong></label>
+                      <input type="number" id="quantity-{{item.id}}" class="quantity" [(ngModel)]="item.quantity" min="0" (input)="updateQuantity(item)">
+                      <button class="remove-button" (click)="removeItem(item)">Remove</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="order-summary card" *ngIf="cartItems.length > 0">
+          <p class="subtotal">Subtotal: <span class="subtotal-value">€{{ subtotal }}</span></p>
+          <p> + standard shipping: <span class="shipping-value">€{{ shipping }}</span></p>
+          <p class="total"><strong>Total: <span class="total-value">€{{ total }}</span></strong></p>
+          <a routerLink="/checkout">
+          <button label="Checkout" class="checkout-button">Proceed to Checkout</button>
+          </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
